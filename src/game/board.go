@@ -1,7 +1,10 @@
 package game
 
-import "log"
-import "fmt"
+import (
+	"log"
+    "fmt"
+	"errors"
+)
 
 const size = 3
 const numberToWin = 3 
@@ -115,6 +118,14 @@ func (b *Board) IsFull() bool {
 		}
 	}
 	return true
+}
+
+func (b *Board) Fill(square []string) error {
+	if len(square) != size * size {
+		return errors.New("Your list have not the good size")
+	}
+	copy(b.square, square)
+	return nil
 }
 
 func (b *Board) ToString() (string, error) {
