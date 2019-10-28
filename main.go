@@ -8,7 +8,7 @@ import (
 
 func main()  {
 	fmt.Println("New game")
-	var b = game.NewBoard()
+	var b = game.NewBoard(3, 3)
 	var p, err = game.NewPlayer("Aurélien", "x")
 	if err != nil {
 		fmt.Println(err)
