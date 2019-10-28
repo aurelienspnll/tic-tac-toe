@@ -2,7 +2,6 @@ package game
 
 import (
 	"errors"
-	"fmt"
 	"log"
 )
 
@@ -66,7 +65,7 @@ func (b *Board) IsWinByLineRightToLeft() bool {
 			if m == "x" || m == "o" { //avoid "-" case
 				for i := 1; i < b.numberToWin; i++ {
 					var mTmp, err = b.GetMark(x, y+i)
-					fmt.Println(mTmp)
+					//fmt.Println(mTmp)
 					if err != nil {
 						log.Fatal(err)
 					}
@@ -94,7 +93,7 @@ func (b *Board) IsWinByLineTopToBot() bool {
 			if m == "x" || m == "o" { //avoid "-" case
 				for i := 1; i < b.numberToWin; i++ {
 					var mTmp, err = b.GetMark(x+i, y)
-					fmt.Println(mTmp)
+					//fmt.Println(mTmp)
 					if err != nil {
 						log.Fatal(err)
 					}

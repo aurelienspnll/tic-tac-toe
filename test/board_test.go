@@ -72,7 +72,7 @@ func TestWinByLaneRightToLeft_2(t *testing.T) {
 		// 	fmt.Println(s)
 		// }
 	}
-	fmt.Println("Number of win : %d", numberOfWin)
+	fmt.Println("Number of win : ", numberOfWin)
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
