@@ -15,7 +15,7 @@ import (
 var b *game.Board
 
 func TestMain(m *testing.M) {
-	b = game.NewBoard()
+	b = game.NewBoard(3, 3)
 	code := m.Run()
 	os.Exit(code)
 }
@@ -23,7 +23,7 @@ func TestMain(m *testing.M) {
 func TestWinByLaneRightToLeft_1(t *testing.T) {
 	var s string
 	var err error
-	b = game.NewBoard()
+	b = game.NewBoard(3, 3)
 	boardSquare := []string{"x", "x", "x", " ", " ", " ", " ", " ", " "}
 	err = b.Fill(boardSquare)
 	if err != nil {
@@ -38,7 +38,7 @@ func TestWinByLaneRightToLeft_1(t *testing.T) {
 		fmt.Print(s)
 	}
 
-	assert.True(t, b.IsWinByLineRightToLeft(0), "Should be true")
+	assert.True(t, b.IsWinByLineRightToLeft(), "Should be true")
 
 }
 
@@ -55,7 +55,7 @@ func TestWinByLaneRightToLeft_2(t *testing.T) {
 		var line []string
 		line = strings.Split(scanner.Text(), "")
 
-		b = game.NewBoard()
+		b = game.NewBoard(3, 3)
 		err = b.Fill(line)
 		if err != nil {
 			fmt.Println(err)
