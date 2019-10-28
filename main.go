@@ -6,9 +6,9 @@ import (
 	"github.com/aurelienspnll/tic-tac-toe/src/game"
 )
 
-func main()  {
+func main() {
 	fmt.Println("New game")
-	var b = game.NewBoard(3, 3)
+	var b = game.NewBoard()
 	var p, err = game.NewPlayer("Aurélien", "x")
 	if err != nil {
 		fmt.Println(err)
@@ -25,11 +25,11 @@ func main()  {
 		var s, err = b.GetMark(0, 0)
 		if err != nil {
 			fmt.Println(err)
-		}	
+		}
 		s, err = b.ToString()
 		if err != nil {
 			fmt.Println(err)
-		}		
+		}
 		fmt.Print(s)
 		fmt.Println("IsFull :", b.IsFull())
 		fmt.Println("IsWinByLineRightToLeft :", b.IsWinByLineRightToLeft(0))
