@@ -24,7 +24,7 @@ func TestWinByLaneRightToLeft_1(t *testing.T) {
 	var s string
 	var err error
 	b = game.NewBoard(3, 3)
-	boardSquare := []string{"x", "x", "x", " ", " ", " ", " ", " ", " "}
+	boardSquare := []string{"x", "x", "x", "-", "-", "-", "-", "-", "-"}
 	err = b.Fill(boardSquare)
 	if err != nil {
 		fmt.Println(err)
