@@ -8,7 +8,7 @@ import (
 
 func main() {
 	fmt.Println("New game")
-	var b = game.NewBoard()
+	var b = game.NewBoard(3, 3)
 	var p, err = game.NewPlayer("Aurélien", "x")
 	if err != nil {
 		fmt.Println(err)
@@ -32,8 +32,8 @@ func main() {
 		}
 		fmt.Print(s)
 		fmt.Println("IsFull :", b.IsFull())
-		fmt.Println("IsWinByLineRightToLeft :", b.IsWinByLineRightToLeft(0))
-		fmt.Println("IsWinByLineTopToBot :", b.IsWinByLineTopToBot(0))
+		fmt.Println("IsWinByLineRightToLeft :", b.IsWinByLineRightToLeft())
+		fmt.Println("IsWinByLineTopToBot :", b.IsWinByLineTopToBot())
 		fmt.Println(p.GetScore())
 	}
 }
