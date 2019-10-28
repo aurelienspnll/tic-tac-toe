@@ -48,8 +48,7 @@ func (b *Board) GetMark(posx int, posy int) (string, error) {
 
 // Must be call in game engine only after 5 turns
 func (b *Board) IsWin() bool {
-	//extraLineWinnable := b.size % b.numberToWin
-	return false
+	return b.IsWinByLineRightToLeft() || b.IsWinByLineTopToBot() // || b.IsFull()
 }
 
 //Split by 4 directions to be able to implement the algo : see paper
