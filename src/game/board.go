@@ -3,6 +3,7 @@ package game
 import (
 	"errors"
 	"log"
+	"strconv"
 )
 
 type Board struct {
@@ -39,7 +40,7 @@ func (b *Board) Mark(posx int, posy int, mark string) error {
 }
 
 func (b *Board) GetMark(posx int, posy int) (string, error) {
-	if posx > b.size || posy > b.size {
+	if posx >= b.size || posy >= b.size {
 		return "error", &PositionError{posx, posy}
 	} else {
 		return b.square[posx*b.size+posy], nil
@@ -48,7 +49,7 @@ func (b *Board) GetMark(posx int, posy int) (string, error) {
 
 // Must be call in game engine only after 5 turns
 func (b *Board) IsWin() bool {
-	return b.IsWinByLineRightToLeft() || b.IsWinByLineTopToBot() // || b.IsFull()
+	return b.IsWinByLineRightToLeft() || b.IsWinByLineTopToBot() || b.IsWinByDiagonalRightToLeft() || b.IsWinByDiagonalLeftToRight() // || b.IsFull()
 }
 
 //Split by 4 directions to be able to implement the algo : see paper
@@ -183,20 +184,49 @@ func (b *Board) Fill(square []string) error {
 	return nil
 }
 
+func (b *Board) LineToString(line int) (string, error) {
+	if line >= b.size {
+		return "error", errors.New("Wrong line")
+	}
+	var res string
+	for y := 0; y < b.size; y++ {
+		m, err := b.GetMark(line, y)
+		if err != nil {
+			return "error", err
+		} else if y == 0 {
+			res = "| " + strconv.Itoa(line) + " | " + m + " | "
+		} else {
+			res = res + m + " | "
+		}
+	}
+	res = res + "\n"
+	return res, nil
+}
+
+func (b *Board) LinePosToString() string {
+	var res string
+	for y := 0; y < b.size; y++ {
+		if y == 0 {
+			res = "|x\\y| " + strconv.Itoa(y) + " | "
+		} else {
+			res = res + strconv.Itoa(y) + " | "
+		}
+	}
+	res = res + "\n"
+	return res
+}
+
 func (b *Board) ToString() (string, error) {
 	var res string
 	for x := 0; x < b.size; x++ {
-		for y := 0; y < b.size; y++ {
-			m, err := b.GetMark(x, y)
-			if err != nil {
-				return "error", err
-			} else if y == 0 {
-				res = res + "| " + m + " | "
-			} else {
-				res = res + m + " | "
-			}
+		if x == 0 {
+			res += b.LinePosToString()
 		}
-		res = res + "\n"
+		tmp, err := b.LineToString(x)
+		if err != nil {
+			return tmp, err
+		}
+		res += tmp
 	}
 	return res, nil
 }

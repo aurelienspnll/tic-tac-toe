@@ -71,16 +71,17 @@ func (e *Engine) WherePlay() (int, int) {
 
 func (e *Engine) Play() {
 	//STDIN to play turn by turn
+	var p *Player
 	fmt.Println("----------------------")
 	fmt.Println("Welcome to TicTacToe :")
 	fmt.Println("----------------------")
-	for !e.board.IsWin() {
+	for !e.board.IsWin() && !e.board.IsFull() {
 		s, err := e.board.ToString()
 		if err != nil {
 			log.Fatal(err)
 		}
 		fmt.Println(s)
-		p := e.WhoTurn()
+		p = e.WhoTurn()
 		fmt.Println("It's", p.GetName(), "'s turn...")
 		posx, posy := e.WherePlay()
 		err = e.board.Mark(posx, posy, p.GetMark())
@@ -91,9 +92,15 @@ func (e *Engine) Play() {
 		}
 		e.NextTurn()
 	}
-	fmt.Println("----------------------")
-	fmt.Println("    Someone wins :")
-	fmt.Println("----------------------")
+	if e.board.IsWin() {
+		fmt.Println("----------------------")
+		fmt.Println("    ", p.GetName(), " wins :")
+		fmt.Println("----------------------")
+	} else {
+		fmt.Println("----------------------")
+		fmt.Println("    No one wins :")
+		fmt.Println("----------------------")
+	}
 	s, _ := e.board.ToString()
 	fmt.Println(s)
 }

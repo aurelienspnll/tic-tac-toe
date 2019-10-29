@@ -23,6 +23,76 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
+func TestGetMark(t *testing.T) {
+	var s string
+	var err error
+	b = game.NewBoard(size, numberToWin)
+	boardSquare := []string{"x", "o", "x", "-", "x", "-", "o", "-", "o"}
+	err = b.Fill(boardSquare)
+	if err != nil {
+		fmt.Println(err)
+	}
+	// INIT OK
+
+	s, err = b.ToString()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Print(s)
+	}
+	var res string
+	res, _ = b.GetMark(0, 0)
+	assert.Equal(t, "x", res, "Should be x")
+	res, _ = b.GetMark(0, 1)
+	assert.Equal(t, "o", res, "Should be o")
+	res, _ = b.GetMark(0, 2)
+	assert.Equal(t, "x", res, "Should be x")
+	res, _ = b.GetMark(1, 0)
+	assert.Equal(t, "-", res, "Should be -")
+	res, _ = b.GetMark(1, 1)
+	assert.Equal(t, "x", res, "Should be x")
+	res, _ = b.GetMark(1, 2)
+	assert.Equal(t, "-", res, "Should be -")
+	res, _ = b.GetMark(2, 0)
+	assert.Equal(t, "o", res, "Should be o")
+	res, _ = b.GetMark(2, 1)
+	assert.Equal(t, "-", res, "Should be -")
+	res, _ = b.GetMark(2, 2)
+	assert.Equal(t, "o", res, "Should be o")
+	res, err = b.GetMark(0, 3)
+	assert.NotNil(t, err, "err should be not nil")
+	assert.Equal(t, "error", res, "Should be error")
+}
+
+func TestIsFull(t *testing.T) {
+	var s string
+	var err error
+	b = game.NewBoard(size, numberToWin)
+	boardSquare := []string{"x", "x", "x", "o", "-", "o", "o", "o", "x"}
+	err = b.Fill(boardSquare)
+	if err != nil {
+		fmt.Println(err)
+	}
+	// INIT OK
+
+	s, err = b.ToString()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Print(s)
+	}
+
+	assert.False(t, b.IsFull(), "Should be false")
+	b.Mark(1, 1, "x")
+	s, err = b.ToString()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Print(s)
+	}
+	assert.True(t, b.IsFull(), "Should be true")
+}
+
 func TestWinByLineRightToLeft_1(t *testing.T) {
 	var s string
 	var err error
