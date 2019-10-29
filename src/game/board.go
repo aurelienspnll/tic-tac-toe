@@ -92,6 +92,33 @@ func (b *Board) IsWinByLineTopToBot() bool {
 			if m == "x" || m == "o" { //avoid "-" case
 				for i := 1; i < b.numberToWin; i++ {
 					var mTmp, err = b.GetMark(x+i, y)
+					if err != nil {
+						log.Fatal(err)
+					}
+					if m == mTmp && i == b.numberToWin-1 {
+						return true
+					} else if m == mTmp {
+						m = mTmp
+					} else {
+						break
+					}
+				}
+			}
+		}
+	}
+	return false
+}
+
+func (b *Board) IsWinByDiagonalRightToLeft() bool {
+	for x := 0; x <= b.extraLineWinnable; x++ {
+		for y := 0; y <= b.extraLineWinnable; y++ {
+			var m, err = b.GetMark(x, y)
+			if err != nil {
+				log.Fatal(err)
+			}
+			if m == "x" || m == "o" { //avoid "-" case
+				for i := 1; i < b.numberToWin; i++ {
+					var mTmp, err = b.GetMark(x+i, y+i)
 					//fmt.Println(mTmp)
 					if err != nil {
 						log.Fatal(err)
@@ -110,8 +137,32 @@ func (b *Board) IsWinByLineTopToBot() bool {
 	return false
 }
 
-func (b *Board) IsWinByDiagonal() bool {
-	//numberOfPossibility := b.size + b.size * b.extraLineWinnable // same for diagonals?
+func (b *Board) IsWinByDiagonalLeftToRight() bool {
+	bound := b.size - b.extraLineWinnable - 1 //-1 because array start to 0
+	for x := (b.size - 1); x >= bound; x-- {
+		for y := (b.size - 1); y >= bound; y-- {
+			var m, err = b.GetMark(x, y)
+			if err != nil {
+				log.Fatal(err)
+			}
+			if m == "x" || m == "o" { //avoid "-" case
+				for i := 1; i < b.numberToWin; i++ {
+					var mTmp, err = b.GetMark(x-i, y-i)
+					//fmt.Println(mTmp)
+					if err != nil {
+						log.Fatal(err)
+					}
+					if m == mTmp && i == b.numberToWin-1 {
+						return true
+					} else if m == mTmp {
+						m = mTmp
+					} else {
+						break
+					}
+				}
+			}
+		}
+	}
 	return false
 }
 

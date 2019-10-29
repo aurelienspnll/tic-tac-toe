@@ -1,6 +1,6 @@
 package main
 
-import "github.com/aurelienspnll/tic-tac-toe/src/game"
+import "game"
 
 // func main() {
 // 	fmt.Println("New game")
