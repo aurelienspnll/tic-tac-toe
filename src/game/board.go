@@ -139,7 +139,7 @@ func (b *Board) IsWinByDiagonalRightToLeft() bool {
 
 func (b *Board) IsWinByDiagonalLeftToRight() bool {
 	bound := b.size - b.extraLineWinnable - 1 //-1 because array start to 0
-	for x := (b.size - 1); x >= bound; x-- {
+	for x := 0; x <= b.extraLineWinnable; x++ {
 		for y := (b.size - 1); y >= bound; y-- {
 			var m, err = b.GetMark(x, y)
 			if err != nil {
@@ -147,7 +147,7 @@ func (b *Board) IsWinByDiagonalLeftToRight() bool {
 			}
 			if m == "x" || m == "o" { //avoid "-" case
 				for i := 1; i < b.numberToWin; i++ {
-					var mTmp, err = b.GetMark(x-i, y-i)
+					var mTmp, err = b.GetMark(x+i, y-i)
 					//fmt.Println(mTmp)
 					if err != nil {
 						log.Fatal(err)
