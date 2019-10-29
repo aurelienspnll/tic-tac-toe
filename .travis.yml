@@ -11,5 +11,5 @@ notifications:
   email: false
 
 script:
-  - GOPATH=./ && go build
+  - GOPATH=$TRAVIS_BUILD_DIR && go build
   - go test -v ./test/
