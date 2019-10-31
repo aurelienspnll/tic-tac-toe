@@ -16,16 +16,16 @@ type Engine struct {
 	turn       int
 }
 
-func NewEngine(size int, numberToWin int, name_one string, name_two string) *Engine {
+func NewEngine(size int, numberToWin int, name_one string, name_two string, AI bool) *Engine {
 	var err error
 	e := new(Engine)
 	e.board = NewBoard(size, numberToWin)
-	e.player_one, err = NewPlayer(name_one, "x")
+	e.player_one, err = NewPlayer(name_one, "x", AI)
 	e.turn = 0
 	if err != nil {
 		log.Fatal(err)
 	}
-	e.player_two, err = NewPlayer(name_two, "o")
+	e.player_two, err = NewPlayer(name_two, "o", false)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -103,4 +103,8 @@ func (e *Engine) Play() {
 	}
 	s, _ := e.board.ToString()
 	fmt.Println(s)
+}
+
+func (e *Engine) GetBoard() *Board {
+	return e.board
 }

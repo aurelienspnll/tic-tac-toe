@@ -167,9 +167,40 @@ func (b *Board) IsWinByDiagonalLeftToRight() bool {
 	return false
 }
 
+func (b *Board) RemainingMoves() int {
+	var res = 0
+	for x := 0; x < b.size*b.size; x++ {
+		if b.square[x] == "-" {
+			res += 1
+		}
+	}
+	return res
+}
+
+func (b *Board) GetBlankPos(i int) (int, error) {
+	var count = 0
+	for x := 0; x < b.size*b.size; x++ {
+		if b.square[x] == "-" && count == i {
+			return x, nil
+		} else if b.square[x] == "-" {
+			count += 1
+		}
+	}
+	return 0, errors.New("Bad position of blank")
+}
+
 func (b *Board) IsFull() bool {
 	for x := 0; x < b.size*b.size; x++ {
 		if b.square[x] == "-" {
+			return false
+		}
+	}
+	return true
+}
+
+func (b *Board) IsEmpty() bool {
+	for x := 0; x < b.size*b.size; x++ {
+		if b.square[x] == "x" || b.square[x] == "o" {
 			return false
 		}
 	}
@@ -229,4 +260,16 @@ func (b *Board) ToString() (string, error) {
 		res += tmp
 	}
 	return res, nil
+}
+
+func (b *Board) GetSquare() []string {
+	return b.square
+}
+
+func (b *Board) GetSize() int {
+	return b.size
+}
+
+func (b *Board) GetNumberToWin() int {
+	return b.numberToWin
 }
