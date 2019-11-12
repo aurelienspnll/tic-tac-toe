@@ -3,11 +3,12 @@ language: go
 go:
   - 1.13.x
 
+  
 addons:
   sonarcloud:
-    organization: "sonarcloud"
+    organization: "aurelienspnll-github"
     token:
-      secure: "05d77c21b74f74eaf261eaf9d5cac3a91c671b8a"
+      secure: travis encrypt a0a719b4ab7bbd8031a958e48a06e1e2c617f6eb
       
 install:
   # Installs Go Meta Linter (Golint and Go vet are also supported independently)
