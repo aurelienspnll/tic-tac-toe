@@ -3,7 +3,6 @@ language: go
 go:
   - 1.13.x
 
-  
 addons:
   sonarcloud:
     organization: "aurelienspnll-github"
@@ -19,10 +18,6 @@ before_script:
   - go get github.com/aurelienspnll/tic-tac-toe/
   - go get github.com/stretchr/testify/assert
 
-# Don't email me the results of the test runs.
-notifications:
-  email: false
-
 script:
   # Execute Go Meta Linter
   - $GOPATH/bin/gometalinter.v2 samples/ > gometalinter-report.out || true
@@ -31,3 +26,11 @@ script:
   - go test ./test/ -coverprofile=coverage.out
   # And then execute SonarCloud analysis which will run its own code analysis, and also reuse the linters' results
   - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
+# Don't email me the results of the test runs.
+notifications:
+  email: false
