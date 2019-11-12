@@ -2,6 +2,7 @@ package ai
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 func GetOpennantMark(mark string) string {
@@ -94,7 +95,7 @@ func GetPosBestMove(currentBoard []string, nextBoard []string, size int) (int, i
 func BestMove(n *Node) (int, int) { // The tree was built so now we choose the best move
 	// = The children with score = 1
 	if n.GetCurrentBoard().IsEmpty() { // if board size = 3
-		fmt.Println("The best move is : ", 1, 1)
+		fmt.Println("The best move is : ", rand.Intn(3), rand.Intn(3)) // rand  0 <= n < 3
 		return 1, 1
 	}
 	var scores []int
