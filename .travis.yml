@@ -8,7 +8,7 @@ addons:
   sonarcloud:
     organization: "aurelienspnll-github"
     token:
-      secure: "dy3peJsj2LFNx/7+ZLk2hWgux2ojGYr+BWn9ngCLy272z1UPonQMG0jS0Wky0imnHg1S7erdiBQmXjjw8FM+evy/+eiKaZymabkuk9EJ4+iGtPomr51AZzzzxzOgBMaqBGNdKPg+Va9e2JLqJIEyIGX6d5zD3q9QdJOfcAe6o2U7MumOke/w8zHTYXm4gFtAFZ+j20C4F7NrPG0ADD70Hd/GCfhjZSVGY2T0Y4jazSNcPQfNMnUd6W7a411h3ZNjuxZmRrhH/8+zwQl66GRLrB+W5y8JxDUmWo1ZusNmWM7Fu2n2qKCCy0cKLtut3gjBCDCLNb75o2A151ryXz2KkHdAO2PhQOtwLR0axgUTTVn2ruDOaf7iZEkxVAkMVytVNZ8KPFbD49lCR9UWGYmbTjxpzyDEID1Sct3mFgPDt7ERE0v+FJ4zpXEoKovyhWgQ93yn/5QUW/eqB5MLKfi+etEon8ZaE1OKfXC4z17D0YJ1imaBgwbEH+I/3DcxOWaCTEV4Qb+K+dbdu/8R/WhaL6CCtqVOr8aQn+LaRrCTg3vZZm6WDR04CvGKydHvFWasY5Zrs9MS3eTK53dxukHY5iXHHboEVzvH1Jn/fMumNdI5n6TZBgc7eUhpxDl+1G8e0FEN5N0qgM4Lbpg0wiJWizvb4sNNB+7icPm9uQxTXos="
+      secure: "710d954e0219ca886f6899672be48a42b790de42"
       
 install:
   # Installs Go Meta Linter (Golint and Go vet are also supported independently)
