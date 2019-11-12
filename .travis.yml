@@ -8,7 +8,7 @@ addons:
   sonarcloud:
     organization: "aurelienspnll-github"
     token:
-      secure: "710d954e0219ca886f6899672be48a42b790de42"
+      secure: $SONAR_TOKEN
       
 install:
   # Installs Go Meta Linter (Golint and Go vet are also supported independently)
