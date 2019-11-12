@@ -16,6 +16,7 @@ install:
 
 before_script:
   - go get github.com/aurelienspnll/tic-tac-toe/
+  - go get github.com/stretchr/testify/assert
 
 # Don't email me the results of the test runs.
 notifications:
