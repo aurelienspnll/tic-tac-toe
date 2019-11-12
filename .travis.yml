@@ -8,7 +8,7 @@ addons:
   sonarcloud:
     organization: "aurelienspnll-github"
     token:
-      secure: travis encrypt a0a719b4ab7bbd8031a958e48a06e1e2c617f6eb
+      secure: "90c76f94bae85b2120a74d5bb5992e9e0dcfec95"
       
 install:
   # Installs Go Meta Linter (Golint and Go vet are also supported independently)
